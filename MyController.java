@@ -1,30 +1,30 @@
-package com.calculo.neto.Controller;
+package com.escuela.usuario.valido.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.calculo.neto.AppNeto;
+import com.escuela.usuario.valido.DummyService;
 
 @Controller
-public class MyController {
-
-	@GetMapping("/sueldoNeto")
-	public String sueldoNetoForm(Model model) {
-		model.addAttribute("sueldoNeto", new AppNeto());
-		return "sueldoNeto";
-	}
-
-	@PostMapping("/sueldoNeto")
-	public String sueldoNetoSubmit(@ModelAttribute AppNeto sueldoNeto, double sueldo, double jubilacion, double pami, double obraSocial) {
-		sueldoNeto.pamiCal(sueldo);
-		sueldoNeto.jubCal(sueldo);
-		sueldoNeto.netoCal(sueldo, jubilacion, pami, obraSocial);
-		sueldoNeto.obraCal(sueldo);
-
-		return "sueldoNeto";
-	}
-
+public class MyController{
+	@Autowired
+	DummyService ds;
+	
+	@GetMapping("/login")
+    public String getlogin(Model model) {
+        model.addAttribute("login", new DummyService());
+        return "login";
+    }
+	
+	@PostMapping("/login")
+    public String login(@ModelAttribute DummyService dummyService) {
+        boolean flag = dummyService.getAtribute();
+        System.out.println(flag);
+		if(flag == true) return "loginOk";
+		else return "zError";
+    }
 }
