@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Calculadora de sueldo neto</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body bgcolor=#a9cce3>
+<font color="Black">
+	<h1>Calcula Sueldo Neto</h1>
+    <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+    <p><h4>Ingrese Sueldo Bruto: $  <input type="text" size="10" th:field="*{sueldo}"/ </p>
+		<p>Jubilacion 11%:          <span  th:text="  ' $  ' + ${greeting.jubi}"</p>
+		<p>Obra Social 3%: :        <span  th:text="  ' $  ' + ${greeting.obras}"</p>
+		<p>Ley 19032 (PAMI) 3%  :   <span  th:text="  ' $  ' + ${greeting.pami}"</p>
+		<p><h2> Sueldo Neto:        <span  th:text="  ' $  ' + ${greeting.neto}"</p>
+		
+        <p><input type="submit" value="Calcular" /> <input type="reset" value="Reset" /></p>
+    </form>
+</body>
+</html>
